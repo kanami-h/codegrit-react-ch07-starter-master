@@ -13,9 +13,12 @@ export default class extends Component {
   }
 
   handleChooseConversation = () => {}
-  
+
   componentDidMount() {
     // fetchChatDataファンクションを利用してデータを取得しましょう。
+    // fetchChatDataがPromiseなのでthenで返したくなりますが、componentDidMountが実行されなければsvgローディング画像が代わりにずっと回り続けるので、エラーハンドリングはある意味そこでされます
+
+    // ヒント: 関数fetchChatDataが実行されるべきタイミングは、「チャットデータなどのpropsが上書きされる前」それとも「後」のどちらでしょうか？ 後の場合は「待たせておく」技法がありましたね
     fetchChatData().then((conversations) => {
       this.setState({
         loadingInitial: false,

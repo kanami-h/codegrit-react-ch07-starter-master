@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+body, ul, li {
+  margin: 0;
+  padding: 0;
+  font-family: "YuGothic";
+  color: #425e78;
+}

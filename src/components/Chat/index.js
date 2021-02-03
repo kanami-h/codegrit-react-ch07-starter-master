@@ -19,8 +19,14 @@ export default class extends Component {
     // fetchChatDataがPromiseなのでthenで返したくなりますが、componentDidMountが実行されなければsvgローディング画像が代わりにずっと回り続けるので、エラーハンドリングはある意味そこでされます
     // ヒント: 関数fetchChatDataが実行されるべきタイミングは、「チャットデータなどのpropsが上書きされる前」それとも「後」のどちらでしょうか？ 後の場合は「待たせておく」技法がありましたね
     await fetchChatData();
+<<<<<<< HEAD
     const data = fetchChatData(this.conversations)
     console.log(data)
+=======
+    // conversations propsにからの配列を格納しているので、チャットデータではなく、空の配列がそのまま返ってきます。初期値は空でいいですが、setStateは具体的に値を代入して上書きをするものですので、stateと同じ値は重複になりますね
+    // ↓ 関数fetchChatData自体を実行することによって得られる値を検証してみましょう。何が格納されていますか？
+    console.log(fetchChatData());
+>>>>>>> e1b9d5f04c894a87d51acf47301123cd6bb647fd
     this.setState({
       loadingInitial: false,
       conversations: data.conversations

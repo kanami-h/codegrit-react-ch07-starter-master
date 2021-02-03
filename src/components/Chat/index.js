@@ -22,7 +22,7 @@ export default class extends Component {
     console.log(fetchChatData())
     this.setState({
       loadingInitial: false,
-      conversations: []
+      conversations: this.conversations
     })
   }
 

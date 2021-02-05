@@ -24,6 +24,8 @@ export default class extends Component {
       loadingInitial: false,
       conversations: this.conversations
     })
+    // conversationsを検証してみるとundefinedとなるはずです
+    console.log(this.conversations);
   }
 
   fetchMoreConversations = () => {

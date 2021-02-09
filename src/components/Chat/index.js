@@ -23,8 +23,13 @@ export default class extends Component {
       loadingInitial: false,
       conversations: chatData.conversations
     })
+<<<<<<< HEAD
     console.log(chatData.conversations)
     console.log(chatData)
+=======
+    // conversationsを検証してみるとundefinedとなるはずです
+    console.log(this.conversations);
+>>>>>>> 23ac051552f68e1082600cec6ded0739be82af62
   }
 
   fetchMoreConversations = () => {

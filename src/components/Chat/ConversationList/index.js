@@ -61,7 +61,7 @@ const EmptyBox = () => (
 
 export default class extends Component {
   state = {
-    loadingInitial: true,
+    loadingInitial: false,
   }
   render() {
     const {
@@ -69,9 +69,9 @@ export default class extends Component {
     } = this.state;
     let card;
     if(loadingInitial == false){
-      card = <EmptyBox />
+      card = <EmptyBox />;
     } else {
-      card = <LoadMore />
+      card = <LoadMore />;
     }
     return (
       <ConversationListWrapper>

@@ -16,6 +16,13 @@ export default class extends Component {
   
   componentDidMount() {
     // fetchChatDataファンクションを利用してデータを取得しましょう。
+    const chatData = await fetchChatData();
+    this.setState({
+      loadingInitial: false,
+      conversations: chatData.conversations
+    })
+    console.log(chatData.conversations)
+    console.log(chatData)
   }
 
   fetchMoreConversations = () => {

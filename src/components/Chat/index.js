@@ -14,7 +14,7 @@ export default class extends Component {
 
   handleChooseConversation = () => {}
   
-  componentDidMount() {
+  async componentDidMount() {
     // fetchChatDataファンクションを利用してデータを取得しましょう。
     const chatData = await fetchChatData();
     this.setState({

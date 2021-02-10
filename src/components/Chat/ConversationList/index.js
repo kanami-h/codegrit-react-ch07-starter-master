@@ -61,7 +61,7 @@ const EmptyBox = () => (
 
 export default class extends Component {
   state = {
-    loadingInitial: false,
+    loadingInitial: true,
   }
   render() {
     const {

@@ -60,10 +60,22 @@ const EmptyBox = () => (
 );
 
 export default class extends Component {
+  state = {
+    loadingInitial: false,
+  }
   render() {
+    const {
+      loadingInitial,
+    } = this.state;
+    let card;
+    if(loadingInitial == false){
+      card = <EmptyBox />;
+    } else {
+      card = <LoadMore />;
+    }
     return (
       <ConversationListWrapper>
-        <LoadMore />
+        {card}
       </ConversationListWrapper>
     );
   }

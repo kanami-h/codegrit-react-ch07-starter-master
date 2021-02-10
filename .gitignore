@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -21,3 +22,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+=======
+=======
+node_modules
+>>>>>>> 42a8a1f37e7c97e395e3f125869ed7b3efad972f
+>>>>>>> feature/#1_get_data_with_fetchchatdata_function

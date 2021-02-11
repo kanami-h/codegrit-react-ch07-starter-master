@@ -60,22 +60,25 @@ const EmptyBox = () => (
 );
 
 export default class extends Component {
-  state = {
-    loadingInitial: true,
-  }
+  // stateは親コンポーネント（コンテナーコンポーネント）に定義して使うもので、子コンポーネント（プレゼンテーションコンポーネント）ではprops呼び出しの記述です
+  // state = {
+  //   loadingInitial: false,
+  // }
   render() {
     const {
       loadingInitial,
-    } = this.state;
-    let card;
-    if(loadingInitial == false){
+    } = this.state;// このファイルはプレゼンテーションコンポーネントなのでstateがなく、受け取りのthis.propsです
+    // let card; EmptyBoxを格納する必要はなく、JSXとして返り値に指定すればOKです
+
+    // remderはメソッド、つまり関数なので、最終的に変える返り値が必要です。返り値を返すreturn文が必要です
+    if(loadingInitial == false){// loadingInitialの初期値はfalseです。つまりloadingInitialだけでも意味は同じです
       card = <EmptyBox />;
-    } else {
+    } else {// 個々のチャットをどうリストの塊としてここに処理をしていくか指示していく必要があるので、もう少し具体的な処理内容の返り値が必要になりそうです。elseでは説明が十分にできないので、ここは一度elseで何も返さないreturnで終えてしまい、まずはそこまででコンパイルできる状態まで持っていきます
       card = <LoadMore />;
     }
     return (
       <ConversationListWrapper>
-        {card}
+        {/* {card} そのほかに渡すべきpropsを渡しましょう*/}
       </ConversationListWrapper>
     );
   }

@@ -30,8 +30,12 @@ export default class extends Component {
   }
 
   render() {
+    // propsをJSXコンポーネントに渡す用意が必要です
+    // ヒントthis.stateを使います
     return (
-      <ConversationList />
+      <ConversationList
+        // propsをJSXコンポーネントに渡す記述を書きましょう
+      />
     );
   }
 }

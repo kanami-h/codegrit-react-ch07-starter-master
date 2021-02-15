@@ -67,18 +67,18 @@ export default class extends Component {
   render() {
     const {
       loadingInitial,
-    } = this.state;// このファイルはプレゼンテーションコンポーネントなのでstateがなく、受け取りのthis.propsです
+    } = this.props;// このファイルはプレゼンテーションコンポーネントなのでstateがなく、受け取りのthis.propsです
     // let card; EmptyBoxを格納する必要はなく、JSXとして返り値に指定すればOKです
-
     // remderはメソッド、つまり関数なので、最終的に変える返り値が必要です。返り値を返すreturn文が必要です
-    if(loadingInitial == false){// loadingInitialの初期値はfalseです。つまりloadingInitialだけでも意味は同じです
-      card = <EmptyBox />;
-    } else {// 個々のチャットをどうリストの塊としてここに処理をしていくか指示していく必要があるので、もう少し具体的な処理内容の返り値が必要になりそうです。elseでは説明が十分にできないので、ここは一度elseで何も返さないreturnで終えてしまい、まずはそこまででコンパイルできる状態まで持っていきます
-      card = <LoadMore />;
+    if(loadingInitial){// loadingInitialの初期値はfalseです。つまりloadingInitialだけでも意味は同じです
+      return <EmptyBox />;
     }
+    // 個々のチャットをどうリストの塊としてここに処理をしていくか指示していく必要があるので、もう少し具体的な処理内容の返り値が必要になりそうです。
+    // elseでは説明が十分にできないので、ここは一度elseで何も返さないreturnで終えてしまい、まずはそこまででコンパイルできる状態まで持っていきます
+    // {card}そのほかに渡すべきpropsを渡しましょう
     return (
       <ConversationListWrapper>
-        {/* {card} そのほかに渡すべきpropsを渡しましょう*/}
+        {loadingInitial}
       </ConversationListWrapper>
     );
   }

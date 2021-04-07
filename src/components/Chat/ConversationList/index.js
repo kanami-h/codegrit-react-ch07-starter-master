@@ -87,22 +87,28 @@ export default class extends Component {
       conversation, 
       isChosen
     } = this.props;
+    // propsにどんな値が渡っているかを検証します。
+    // そうすると今の状態は、loadingInitialしか値が渡っていないので、conversationsの配列が取得できず、mapがundefinedと出ているようです
+    console.log(this.props);
+
     if(loadingInitial){
       return <EmptyBox />;
     }
     // 個々のチャットをどうリストの塊としてここに処理をしていくか指示していく必要があるので、もう少し具体的な処理内容の返り値が必要になりそうです。
     // elseでは説明が十分にできないので、ここは一度elseで何も返さないreturnで終えてしまい、まずはそこまででコンパイルできる状態まで持っていきます
     // {card}そのほかに渡すべきpropsを渡しましょう
-    const conversationPart = conversations.map(function(conversation) {
-      // 新しい配列の要素を返す
-      return (
-        <ConversationListItem
-          handleChooseConversation={handleChooseConversation}
-          conversation={conversation}
-          isChosen={isChosen}
-          />
-      )
-    })
+
+    // 検証できる環境にするため、一時的にコメントアウトしています
+    // const conversationPart = conversations.map(function(conversation) {
+    //   // 新しい配列の要素を返す
+    //   return (
+    //     <ConversationListItem
+    //       handleChooseConversation={handleChooseConversation}
+    //       conversation={conversation}
+    //       isChosen={isChosen}
+    //       />
+    //   )
+    // })
   
     return (
       <ConversationListWrapper>

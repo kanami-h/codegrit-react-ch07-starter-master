@@ -33,7 +33,8 @@ export default class extends Component {
     // propsをJSXコンポーネントに渡す用意が必要です
     // ヒントthis.stateを使います
     const {
-      loadingInitial
+      loadingInitial,
+      conversations
     } = this.state
     return (
       <ConversationList

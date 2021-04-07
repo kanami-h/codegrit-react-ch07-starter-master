@@ -17,7 +17,9 @@ const LoadMoreBox = styled.div({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '100%',
+  width: '360px',
+  height: "360px",
+  border: "1px solid #ddd",
   padding: 10
 })
 
@@ -34,51 +36,79 @@ const LoadMoreMessage = styled.div({
   return styles;
 });
 
-// 無名関数宣言で定義されいてるLoadMoreコンポーネントですが、返り値を持っていないですね
-// 「さらに読み込む」「これ以上ありません」と表示切り替えをするコンポーネントなので、仮に何か文字列をJSXで返すように記述すると一時的にブラウザでも反映がチェックできるようになります
-// 例:
-// return (
-//   <LoadMoreMessage>LoadMoreコンポーネント</LoadMoreMessage>
-// )
-const LoadMore = () => {
-  return(
-    <LoadMoreMessage>LoadMoreコンポーネント</LoadMoreMessage>
-  )
+const LoadMore = (loadingInitial, hasNextPage) => {
+  // 最初のローディング時 - 何も表示しない
+  // 最初のローディング終了後でhasNextPageがtrue - 「更に読み込む」と表示
+  // 「更に読み込む」をクリックしローディング中 - ローディングイメージを既にある会話一覧のすぐ下に表示(幅、高さは40px)
+  // hasNextPageがfalse - 「これ以上ありません」と表示
+
+  if(loadingInitial) return <div />
+
+  if(hasNextPage) {
+    return(
+      <LoadMoreMessage hasMore={true}>
+        更に読み込む
+      </LoadMoreMessage>
+    )
+  }
+
+  if(LoadMoreBox) {
+    return(
+      <LoadMoreBox>
+        <Loader width={40} height={40} />
+      </LoadMoreBox>
+    )
+  }
+
+  if(!hasNextPage) {
+    return(
+      <LoadMoreMessage>
+        これ以上ありません
+      </LoadMoreMessage>
+    )
+  }
+
 }
 
-const EmptyBox = () => (
-  <div css={{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: "360px",
-    width: "360px",
-    border: "1px solid #ddd",
-  }}>
-    <Loader width={60} height={60} />
-  </div>
-);
+const EmptyBox = () => {
+  return(
+    <LoadMoreBox>
+      <Loader width={60} height={60} />
+    </LoadMoreBox>
+  )
+};
 
 export default class extends Component {
-  // stateは親コンポーネント（コンテナーコンポーネント）に定義して使うもので、子コンポーネント（プレゼンテーションコンポーネント）ではprops呼び出しの記述です
-  // state = {
-  //   loadingInitial: false,
-  // }
-  render() {
+ render() {
     const {
       loadingInitial,
-    } = this.props;// このファイルはプレゼンテーションコンポーネントなのでstateがなく、受け取りのthis.propsです
-    // let card; EmptyBoxを格納する必要はなく、JSXとして返り値に指定すればOKです
-    // remderはメソッド、つまり関数なので、最終的に変える返り値が必要です。返り値を返すreturn文が必要です
-    if(loadingInitial){// loadingInitialの初期値はfalseです。つまりloadingInitialだけでも意味は同じです
+      conversations,
+      handleChooseConversation,
+      conversation, 
+      isChosen
+    } = this.props;
+    if(loadingInitial){
       return <EmptyBox />;
     }
     // 個々のチャットをどうリストの塊としてここに処理をしていくか指示していく必要があるので、もう少し具体的な処理内容の返り値が必要になりそうです。
     // elseでは説明が十分にできないので、ここは一度elseで何も返さないreturnで終えてしまい、まずはそこまででコンパイルできる状態まで持っていきます
     // {card}そのほかに渡すべきpropsを渡しましょう
+    const conversationPart = conversations.map(function(conversation) {
+      // 新しい配列の要素を返す
+      return (
+        <ConversationListItem
+          handleChooseConversation={handleChooseConversation}
+          conversation={conversation}
+          isChosen={isChosen}
+          />
+      )
+    })
+  
     return (
       <ConversationListWrapper>
         {loadingInitial}
+        {conversations}
+        <LoadMore />
       </ConversationListWrapper>
     );
   }

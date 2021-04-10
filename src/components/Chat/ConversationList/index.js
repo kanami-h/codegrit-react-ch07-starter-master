@@ -99,7 +99,7 @@ export default class extends Component {
     // {card}そのほかに渡すべきpropsを渡しましょう
 
     // 検証できる環境にするため、一時的にコメントアウトしています
-    // const ConversationPart = conversations.map(function(conversation) {
+    // const conversationPart = conversations.map(function(conversation) {
     //   // 新しい配列の要素を返す
     //   return (
     //     <ConversationListItem

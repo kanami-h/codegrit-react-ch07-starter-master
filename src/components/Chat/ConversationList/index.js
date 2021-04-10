@@ -98,21 +98,22 @@ export default class extends Component {
     // elseでは説明が十分にできないので、ここは一度elseで何も返さないreturnで終えてしまい、まずはそこまででコンパイルできる状態まで持っていきます
     // {card}そのほかに渡すべきpropsを渡しましょう
 
-    // 検証できる環境にするため、一時的にコメントアウトしています
-    // const conversationPart = conversations.map(function(conversation) {
-    //   // 新しい配列の要素を返す
-    //   return (
-    //     <ConversationListItem
-    //       handleChooseConversation={handleChooseConversation}
-    //       conversation={conversation}
-    //       isChosen={isChosen}
-    //       />
-    //   )
-    // })
+    // ConversationPartの文字色が薄いので、ConversationPart自体が返している返り値が、まだ返されていないことになります
+    const ConversationPart = conversations.map(function(conversation) {
+      // 新しい配列の要素を返す
+      return (
+        <ConversationListItem
+          handleChooseConversation={handleChooseConversation}
+          conversation={conversation}
+          isChosen={isChosen}
+        />
+      )
+    })
   
     return (
       <ConversationListWrapper>
-        {loadingInitial}
+        {/* loadingInitialがないとどうなるか検証してみましょう */}
+        <ConversationPart />
         <LoadMore />
       </ConversationListWrapper>
     );

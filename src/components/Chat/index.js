@@ -33,18 +33,12 @@ export default class extends Component {
     const {
       loadingInitial,
       conversations,
-      handleChooseConversation,
-      conversation,
-      isChosen
     } = this.state
     return (
       <ConversationList
         // propsをJSXコンポーネントに渡す記述を書きましょう
         loadingInitial={loadingInitial}
         conversations={conversations}
-        handleChooseConversation={handleChooseConversation}
-        conversation={conversation}
-        isChosen={isChosen}
       />
     );
   }

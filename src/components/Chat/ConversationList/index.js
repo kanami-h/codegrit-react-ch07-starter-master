@@ -112,7 +112,7 @@ export default class extends Component {
   
     return (
       <ConversationListWrapper>
-        {/* loadingInitialがないとどうなるか検証してみましょう */}
+        {/* ConversationPartの値の型は、無名関数なので、コンポーネントのシンタックスだと現在のエラーが出ます */}
         <ConversationPart />
         <LoadMore />
       </ConversationListWrapper>

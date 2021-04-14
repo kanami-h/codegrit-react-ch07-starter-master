@@ -30,12 +30,13 @@ export default class extends Component {
   render() {
     // propsをJSXコンポーネントに渡す用意が必要です
     // ヒントthis.stateを使います
-    const { loadingInitial, conversations } = this.state;
+    const { loadingInitial, conversations, loadingMore } = this.state;
     return (
       <ConversationList
         // propsをJSXコンポーネントに渡す記述を書きましょう
         loadingInitial={loadingInitial}
         conversations={conversations}
+        loadingMore={loadingMore}
       />
     );
   }

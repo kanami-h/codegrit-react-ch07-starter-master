@@ -39,26 +39,25 @@ const LoadMoreMessage = styled.div(
   },
 );
 
-const LoadMore = ({ loadingInitial, hasNextPage }) => {
+const LoadMore = ({ loadingInitial, hasNextPage, loadingMore }) => {
   // 最初のローディング時 - 何も表示しない
-  // 最初のローディング終了後でhasNextPageがtrue - 「更に読み込む」と表示
-  // 「更に読み込む」をクリックしローディング中 - ローディングイメージを既にある会話一覧のすぐ下に表示(幅、高さは40px)
-  // hasNextPageがfalse - 「これ以上ありません」と表示
-
   if (loadingInitial) return <div />;
 
+  // 最初のローディング終了後でhasNextPageがtrue - 「更に読み込む」と表示
   if (hasNextPage) {
     return <LoadMoreMessage hasMore={true}>更に読み込む</LoadMoreMessage>;
   }
 
-  if (LoadMoreBox) {
+  // 「更に読み込む」をクリックしローディング中 - ローディングイメージを既にある会話一覧のすぐ下に表示(幅、高さは40px)
+  if (loadingMore) {
     return (
-      <LoadMoreBox>
+      <LoadMoreBox loadingMore={true}>
         <Loader width={40} height={40} />
       </LoadMoreBox>
     );
   }
 
+  // hasNextPageがfalse - 「これ以上ありません」と表示
   if (!hasNextPage) {
     return <LoadMoreMessage>これ以上ありません</LoadMoreMessage>;
   }
@@ -80,6 +79,7 @@ export default class extends Component {
       handleChooseConversation,
       conversation,
       isChosen,
+      loadingMore,
     } = this.props;
     // propsにどんな値が渡っているかを検証します。
     // そうすると今の状態は、loadingInitialしか値が渡っていないので、conversationsの配列が取得できず、mapがundefinedと出ているようです
@@ -106,9 +106,8 @@ export default class extends Component {
 
     return (
       <ConversationListWrapper>
-        {/* ConversationPartの値の型は、無名関数なので、コンポーネントのシンタックスだと現在のエラーが出ます */}
-        <ConversationPart />
-        <LoadMore />
+        {ConversationPart}
+        <LoadMore loadingMore={loadingMore} />
       </ConversationListWrapper>
     );
   }

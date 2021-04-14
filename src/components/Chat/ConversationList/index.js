@@ -83,20 +83,15 @@ export default class extends Component {
       loadingMore,
       hasNextPage,
     } = this.props;
-    // propsにどんな値が渡っているかを検証します。
-    // そうすると今の状態は、loadingInitialしか値が渡っていないので、conversationsの配列が取得できず、mapがundefinedと出ているようです
     console.log(this.props);
 
     if (loadingInitial) {
       return <EmptyBox />;
     }
-    // 個々のチャットをどうリストの塊としてここに処理をしていくか指示していく必要があるので、もう少し具体的な処理内容の返り値が必要になりそうです。
-    // elseでは説明が十分にできないので、ここは一度elseで何も返さないreturnで終えてしまい、まずはそこまででコンパイルできる状態まで持っていきます
-    // {card}そのほかに渡すべきpropsを渡しましょう
 
-    // ConversationPartの文字色が薄いので、ConversationPart自体が返している返り値が、まだ返されていないことになります
     const ConversationPart = conversations.map(function (conversation) {
       // 新しい配列の要素を返す
+      // コンソールに出ているエラーは、この中にある記述を追加すると解消します
       return (
         <ConversationListItem
           handleChooseConversation={handleChooseConversation}
@@ -110,6 +105,7 @@ export default class extends Component {
       <ConversationListWrapper>
         {ConversationPart}
         <LoadMoreBox>
+          {/* LoadMoreコンポーネントで定義していて、JSXのレンダーで返すこの場所に記述のないpropsがあります */}
           <LoadMore
             loadingMore={loadingMore}
             loadingInitial={loadingInitial}

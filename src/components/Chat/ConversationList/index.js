@@ -39,19 +39,19 @@ const LoadMoreMessage = styled.div(
   },
 );
 
-const LoadMore = ({ loadingInitial, hasNextPage, loadingMore }) => {
+const LoadMore = ({ loadingInitial, hasNextPage, loadingMore, hasMore }) => {
   // 最初のローディング時 - 何も表示しない
   if (loadingInitial) return <div />;
 
   // 最初のローディング終了後でhasNextPageがtrue - 「更に読み込む」と表示
   if (hasNextPage) {
-    return <LoadMoreMessage hasMore={true}>更に読み込む</LoadMoreMessage>;
+    return <LoadMoreMessage>更に読み込む</LoadMoreMessage>;
   }
 
   // 「更に読み込む」をクリックしローディング中 - ローディングイメージを既にある会話一覧のすぐ下に表示(幅、高さは40px)
   if (loadingMore) {
     return (
-      <LoadMoreBox loadingMore={true}>
+      <LoadMoreBox>
         <Loader width={40} height={40} />
       </LoadMoreBox>
     );
@@ -80,6 +80,7 @@ export default class extends Component {
       conversation,
       isChosen,
       loadingMore,
+      hasNextPage,
     } = this.props;
     // propsにどんな値が渡っているかを検証します。
     // そうすると今の状態は、loadingInitialしか値が渡っていないので、conversationsの配列が取得できず、mapがundefinedと出ているようです
@@ -107,7 +108,11 @@ export default class extends Component {
     return (
       <ConversationListWrapper>
         {ConversationPart}
-        <LoadMore loadingMore={loadingMore} />
+        <LoadMore
+          loadingMore={loadingMore}
+          loadingInitial={loadingInitial}
+          hasNextPage={hasNextPage}
+        />
       </ConversationListWrapper>
     );
   }

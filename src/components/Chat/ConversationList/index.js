@@ -43,9 +43,10 @@ const LoadMore = ({ loadingInitial, hasNextPage, loadingMore, hasMore }) => {
   // 最初のローディング時 - 何も表示しない
   if (loadingInitial) return <div />;
 
+  console.log(hasMore);
   // 最初のローディング終了後でhasNextPageがtrue - 「更に読み込む」と表示
   if (hasNextPage) {
-    return <LoadMoreMessage>更に読み込む</LoadMoreMessage>;
+    return <LoadMoreMessage hasMore={hasMore}>更に読み込む</LoadMoreMessage>;
   }
 
   // 「更に読み込む」をクリックしローディング中 - ローディングイメージを既にある会話一覧のすぐ下に表示(幅、高さは40px)
@@ -108,11 +109,13 @@ export default class extends Component {
     return (
       <ConversationListWrapper>
         {ConversationPart}
-        <LoadMore
-          loadingMore={loadingMore}
-          loadingInitial={loadingInitial}
-          hasNextPage={hasNextPage}
-        />
+        <LoadMoreBox>
+          <LoadMore
+            loadingMore={loadingMore}
+            loadingInitial={loadingInitial}
+            hasNextPage={hasNextPage}
+          />
+        </LoadMoreBox>
       </ConversationListWrapper>
     );
   }

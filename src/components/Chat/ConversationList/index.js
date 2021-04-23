@@ -78,8 +78,7 @@ export default class extends Component {
       loadingInitial,
       conversations,
       handleChooseConversation,
-      conversation,
-      isChosen,
+      chosenId,
       loadingMore,
       hasNextPage,
     } = this.props;
@@ -92,11 +91,12 @@ export default class extends Component {
     const ConversationPart = conversations.map(function (conversation) {
       // 新しい配列の要素を返す
       // コンソールに出ているエラーは、この中にある記述を追加すると解消します
+      const isChosen = chosenId === conversation.id;
       return (
         <ConversationListItem
           handleChooseConversation={handleChooseConversation}
-          conversation={conversation}
           isChosen={isChosen}
+          key={`conversation-${conversation.id}`}
         />
       );
     });

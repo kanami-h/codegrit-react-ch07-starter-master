@@ -101,8 +101,10 @@ ConversationListItem.propTypes = {
 ConversationListItem.defaultProps = {
   isChosen: false,
   conversation: {
-    avatarUrl: AvatarOne,
-    name: "会話相手",
+    user: {
+      avatarUrl: AvatarOne,
+      name: "会話相手",
+    },
     lastMessage: {
       sentAt: 1557905239000,
       body: "こんにちは!",

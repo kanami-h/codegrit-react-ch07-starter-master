@@ -35,6 +35,7 @@ export default class extends Component {
       conversations,
       loadingMore,
       hasNextPage,
+      hasMore,
     } = this.state;
     return (
       <ConversationList
@@ -43,6 +44,7 @@ export default class extends Component {
         conversations={conversations}
         loadingMore={loadingMore}
         hasNextPage={hasNextPage}
+        hasMore={hasMore}
       />
     );
   }

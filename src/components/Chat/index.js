@@ -12,7 +12,15 @@ export default class extends Component {
     loadingMore: false,
   };
 
-  handleChooseConversation = () => {};
+  handleChooseConversation = () => {
+    // chosenIdに選ばれた数値が入れば active propsを渡して背景色を変える
+    // onClickイベント
+    // ifで条件分岐
+    // setStateでidを上書きする
+    this.setState((state) => ({
+      chosenId: !state.chosenId,
+    }));
+  };
 
   async componentDidMount() {
     // fetchChatDataファンクションを利用してデータを取得しましょう。
@@ -31,6 +39,7 @@ export default class extends Component {
     // propsをJSXコンポーネントに渡す用意が必要です
     // ヒントthis.stateを使います
     const {
+      chosenId,
       loadingInitial,
       conversations,
       loadingMore,
@@ -40,6 +49,7 @@ export default class extends Component {
     return (
       <ConversationList
         // propsをJSXコンポーネントに渡す記述を書きましょう
+        chosenId={chosenId}
         loadingInitial={loadingInitial}
         conversations={conversations}
         loadingMore={loadingMore}

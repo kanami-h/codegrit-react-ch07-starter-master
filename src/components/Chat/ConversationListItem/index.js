@@ -99,7 +99,6 @@ ConversationListItem.propTypes = {
 };
 
 ConversationListItem.defaultProps = {
-  isChosen: false,
   conversation: {
     user: {
       avatarUrl: AvatarOne,

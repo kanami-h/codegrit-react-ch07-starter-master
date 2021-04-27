@@ -77,7 +77,6 @@ export default class extends Component {
     const {
       loadingInitial,
       conversations,
-      handleChooseConversation,
       chosenId,
       loadingMore,
       hasNextPage,
@@ -94,8 +93,8 @@ export default class extends Component {
       const isChosen = chosenId === conversation.id;
       return (
         <ConversationListItem
-          handleChooseConversation={handleChooseConversation}
           isChosen={isChosen}
+          conversation={conversation}
           key={`conversation-${conversation.id}`}
         />
       );

@@ -12,11 +12,13 @@ export default class extends Component {
     loadingMore: false,
   };
 
-  handleChooseConversation = () => {
+  handleChooseConversation = (e, chatId) => {
     // chosenIdに選ばれた数値が入れば active propsを渡して背景色を変える
     // onClickイベント
-    // ifで条件分岐
+    // もしチャットがクリックされたらchosenIdを上書きさせる（違うidだった場合）
     // setStateでidを上書きする
+    if (chatId) {
+    }
     this.setState((state) => ({
       chosenId: !state.chosenId,
     }));

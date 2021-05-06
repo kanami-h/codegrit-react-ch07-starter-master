@@ -13,15 +13,14 @@ export default class extends Component {
   };
 
   handleChooseConversation = (e, chatId) => {
-    // chosenIdに選ばれた数値が入れば active propsを渡して背景色を変える
     // onClickイベント
     // もしチャットがクリックされたらchosenIdを上書きさせる（違うidだった場合）
     // setStateでidを上書きする
-    if (chatId) {
+    if (chatId !== this.state.chosenId) {
+      this.setState({
+        chosenId: chatId,
+      });
     }
-    this.setState((state) => ({
-      chosenId: !state.chosenId,
-    }));
   };
 
   async componentDidMount() {
@@ -48,16 +47,15 @@ export default class extends Component {
       hasNextPage,
       hasMore,
     } = this.state;
-    return (
-      <ConversationList
-        // propsをJSXコンポーネントに渡す記述を書きましょう
-        chosenId={chosenId}
-        loadingInitial={loadingInitial}
-        conversations={conversations}
-        loadingMore={loadingMore}
-        hasNextPage={hasNextPage}
-        hasMore={hasMore}
-      />
-    );
+    const ConversationListProps = {
+      chosenId,
+      loadingInitial,
+      conversations,
+      loadingMore,
+      hasNextPage,
+      hasMore,
+      handleChooseConversation: this.handleChooseConversation,
+    };
+    return <ConversationList {...ConversationListProps} />;
   }
 }

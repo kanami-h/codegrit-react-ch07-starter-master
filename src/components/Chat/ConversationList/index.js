@@ -80,6 +80,7 @@ export default class extends Component {
       chosenId,
       loadingMore,
       hasNextPage,
+      handleChooseConversation,
     } = this.props;
     console.log(this.props);
 
@@ -95,6 +96,7 @@ export default class extends Component {
         <ConversationListItem
           isChosen={isChosen}
           conversation={conversation}
+          handleChooseConversation={handleChooseConversation}
           key={`conversation-${conversation.id}`}
         />
       );

@@ -77,7 +77,10 @@ const ConversationListItem = ({
   isChosen,
 }) => {
   return (
-    <ListItemWrapper active={isChosen}>
+    <ListItemWrapper
+      active={isChosen}
+      handleChooseConversation={handleChooseConversation}
+    >
       <AvatarWrapper>
         <AvatarImage alt="アバター" src={conversation.user.avatarUrl} />
       </AvatarWrapper>

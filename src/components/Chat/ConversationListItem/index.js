@@ -79,7 +79,7 @@ const ConversationListItem = ({
   return (
     <ListItemWrapper
       active={isChosen}
-      handleChooseConversation={handleChooseConversation}
+      onClick={(e) => handleChooseConversation(e, conversation.chatId)}
     >
       <AvatarWrapper>
         <AvatarImage alt="アバター" src={conversation.user.avatarUrl} />

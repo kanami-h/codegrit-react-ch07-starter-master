@@ -77,6 +77,7 @@ const ConversationListItem = ({
   isChosen,
 }) => {
   return (
+    // chatIdは、Chat/index.js内でだけ定義している引数です。関数をimportしているのであれば引き継げますが、handleChooseConversationを、今回はpropsとして渡しているので、引数名の引継ぎはできず、エラーが出ています。convsesationsのid取得は、元のchatData.jsファイルではどのようなオブジェクトプロパティ名で取得できたかをチェックしましょう
     <ListItemWrapper
       active={isChosen}
       onClick={(e) => handleChooseConversation(e, conversation.chatId)}

@@ -16,6 +16,7 @@ export default class extends Component {
     // onClickイベント
     // もしチャットがクリックされたらchosenIdを上書きさせる（違うidだった場合）
     // setStateでidを上書きする
+    // e.preventDefault();
     if (chatId !== this.state.chosenId) {
       this.setState({
         chosenId: chatId,

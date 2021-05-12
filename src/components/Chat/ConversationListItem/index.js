@@ -80,7 +80,7 @@ const ConversationListItem = ({
     // chatIdは、Chat/index.js内でだけ定義している引数です。関数呼び出しの際に、引数に値を代入するので、データ格納ファイルにある、オブジェクトのプロパティ、idを代入すると良さそうです
     <ListItemWrapper
       active={isChosen}
-      onClick={(e) => handleChooseConversation(e, conversation.chatId)}
+      onClick={(e) => handleChooseConversation(e, conversation.id)}
     >
       <AvatarWrapper>
         <AvatarImage alt="アバター" src={conversation.user.avatarUrl} />
